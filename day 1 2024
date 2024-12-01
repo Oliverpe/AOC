@@ -16,7 +16,7 @@ int calculate_total_distance(int *listleft, int *listright, int size) {
 }
 
 int main() {
-    FILE *file = fopen("C:\\Users\\hei_o\\OneDrive\\Skrivbord\\textfile.txt.txt", "r");
+    FILE *file = fopen("\\textfile.txt.txt", "r");
     if (file == NULL) {
         printf("Error opening file.\n");
         return 1;

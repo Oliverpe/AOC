@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Function to compare two integers with qsort
+int compare(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}
+
+// Function to calculate the total distance between two lists
+int calculate_total_distance(int *listleft, int *listright, int size) {
+    int total_distance = 0;
+    for (int i = 0; i < size; i++) {
+        total_distance += abs(listleft[i] - listright[i]);
+    }
+    return total_distance;
+}
+
+int main() {
+    FILE *file = fopen("C:\\Users\\hei_o\\OneDrive\\Skrivbord\\textfile.txt.txt", "r");
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+
+    int listleft[1000], listright[1000];
+    int size = 0;
+
+    // Read values from the file
+    while (fscanf(file, "%d %d", &listleft[size], &listright[size]) == 2 && size < 1000) {
+        size++;
+    }
+    fclose(file);
+
+    // Sort both lists
+    qsort(listleft, size, sizeof(int), compare);
+    qsort(listright, size, sizeof(int), compare);
+
+    // Calc total distance
+    int total_distance = calculate_total_distance(listleft, listright, size);
+
+    printf("Total distance: %d\n", total_distance);
+
+    return 0;
+}
